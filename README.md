@@ -1,6 +1,14 @@
-# Getting Started with Create React App
+# TableTop RPG Companion
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Notes
+
+Need to decide on what component library to use
+
+- [Material UI](https://mui.com/material-ui/getting-started/overview/)
+- [Chakra UI](https://chakra-ui.com/)
+- [Semantic UI](https://semantic-ui.com/)
 
 ## Available Scripts
 
