@@ -1,0 +1,1 @@
+export type InputValue = number | string | boolean | null;
