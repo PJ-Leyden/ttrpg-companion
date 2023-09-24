@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import Table from "./common/Table";
+import styles from "./App.module.css";
 import { IWarhammerCharacteristics } from "./warhammer/models";
 import { Container } from "@mui/material";
 import WarhammerCharacterSheet from "./warhammer/WarhammerCharacterSheet";
@@ -24,8 +22,8 @@ function App() {
   const [testValue, setTestValue] = useState<number | undefined>();
 
   return (
-    <div className="App">
-      <Container className="CoreContainer">
+    <div className={styles.App}>
+      <Container className={styles.CoreContainer}>
         <WarhammerCharacterSheet sheet={initSheet} />
         <NumberInputControl
           label="Test"

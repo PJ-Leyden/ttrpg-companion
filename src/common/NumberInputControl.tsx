@@ -7,10 +7,18 @@ export interface INumberInputControl {
   onChange?:
     | React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
     | undefined;
+  className?: string;
 }
 
 const NumberInputControl: React.FC<INumberInputControl> = (props) => {
-  return <TextField {...props} type="number" variant="outlined" />;
+  return (
+    <TextField
+      {...props}
+      type="number"
+      variant="outlined"
+      className={props.className}
+    />
+  );
 };
 
 export default NumberInputControl;
