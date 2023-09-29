@@ -1,8 +1,17 @@
-import { TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
+} from "@mui/material";
 import { ReactElement } from "react";
-import { Table } from "semantic-ui-react";
 
-export interface ICoreTableProps<T> {
+export interface IAllStringKeyProps {
+    [key: string]: any;
+}
+
+export interface ICoreTableProps<T extends IAllStringKeyProps> {
     headers: ICoreTableHeader[];
     data: T[];
 }
@@ -12,7 +21,7 @@ export interface ICoreTableHeader {
     name: string;
 }
 
-const CoreTable = <T,>(props: ICoreTableProps<T>) => {
+const CoreTable = <T extends IAllStringKeyProps>(props: ICoreTableProps<T>) => {
     function expandItem<T>(item: T): ReactElement[] {
         let cells: ReactElement[] = [];
         let k: keyof typeof item;
