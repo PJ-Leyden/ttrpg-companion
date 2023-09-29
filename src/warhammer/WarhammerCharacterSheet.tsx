@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import NumberInputField from "../common/NumberInputField";
 import styles from "./WarhammerCharacterSheet.module.css";
+import CoreTable from "../common/CoreTable";
 
 export interface IWarhammerCharacterSheetProps {
     sheet: IWarhammerCharacteristics;
@@ -105,6 +106,36 @@ const WarhammerCharacterSheet: React.FC<
                     </TableBody>
                 </Table>
             </TableContainer>
+            <CoreTable<IWarhammerCharacteristics>
+                headers={[
+                    {
+                        keyName: "agility",
+                        label: "Agility",
+                        componentFormat: (data: any) => {
+                            return (
+                                <NumberInputField
+                                    name="agility"
+                                    className={styles.characteristicNumberInput}
+                                />
+                            );
+                        },
+                    },
+                ]}
+                data={[
+                    {
+                        weaponSkill: 80,
+                        ballisticSkill: 75,
+                        strength: 60,
+                        toughness: 65,
+                        agility: 45,
+                        dexterity: 70,
+                        initiative: 90,
+                        intelligence: 40,
+                        willpower: 20,
+                        fellowship: 70,
+                    },
+                ]}
+            />
         </Grid>
     );
 };

@@ -5,46 +5,69 @@ import {
     TableHead,
     TableRow,
 } from "@mui/material";
-import { ReactElement } from "react";
+import { ReactElement, useCallback, useMemo } from "react";
 
 export interface IAllStringKeyProps {
     [key: string]: any;
 }
 
 export interface ICoreTableProps<T extends IAllStringKeyProps> {
-    headers: ICoreTableHeader[];
+    headers: ICoreTableHeader<T>[];
     data: T[];
 }
 
-export interface ICoreTableHeader {
+export interface ICoreTableHeader<T extends IAllStringKeyProps> {
+    /**
+     * The name of the field in the table data object that this column represents.
+     */
+    keyName: Extract<keyof T, string>;
+
+    /**
+     * Text to put in the header row.
+     */
     label: string;
-    name: string;
+
+    componentFormat?: (data: any) => ReactElement;
 }
 
 const CoreTable = <T extends IAllStringKeyProps>(props: ICoreTableProps<T>) => {
-    function expandItem<T>(item: T): ReactElement[] {
-        let cells: ReactElement[] = [];
-        let k: keyof typeof item;
-        for (k in item) {
-            cells.push(<TableCell>{k}</TableCell>);
-        }
-        return cells;
-    }
+    const tableHeaders = useMemo(() => {
+        return props.headers.map((header) => {
+            return <TableCell>{header.label}</TableCell>;
+        });
+    }, [props.headers]);
+
+    const buildDataCell = useCallback(
+        (columnHeader: ICoreTableHeader<T>, data: any) => {
+            if (columnHeader.componentFormat) {
+                return columnHeader.componentFormat(data);
+            }
+            return <TableCell>{data}</TableCell>;
+        },
+        []
+    );
+
+    const tableRows = useMemo(() => {
+        return props.data.map((rowItem) => {
+            return (
+                <TableRow>
+                    {props.headers.map((columnHeader, _index) => {
+                        return buildDataCell(
+                            columnHeader,
+                            rowItem[columnHeader.keyName]
+                        );
+                    })}
+                </TableRow>
+            );
+        });
+    }, [buildDataCell, props.data, props.headers]);
 
     return (
         <Table>
             <TableHead>
-                <TableRow>
-                    {props.headers.map((header) => {
-                        return <TableCell>{header.label}</TableCell>;
-                    })}
-                </TableRow>
+                <TableRow>{tableHeaders}</TableRow>
             </TableHead>
-            <TableBody>
-                {props.data.map((item) => {
-                    return <TableRow>{expandItem(item)}</TableRow>;
-                })}
-            </TableBody>
+            <TableBody>{tableRows}</TableBody>
         </Table>
     );
 };
