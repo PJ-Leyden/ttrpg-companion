@@ -1,6 +1,12 @@
 import styles from "./App.module.css";
 import { IWarhammerCharacteristics } from "./warhammer/models";
-import { Container, ThemeProvider, createTheme } from "@mui/material";
+import {
+    AppBar,
+    Container,
+    ThemeProvider,
+    Toolbar,
+    createTheme,
+} from "@mui/material";
 import WarhammerCharacterSheet from "./warhammer/WarhammerCharacterSheet";
 import { themeOptions } from "./theme";
 
@@ -25,6 +31,9 @@ function App() {
     return (
         <div>
             <ThemeProvider theme={theme}>
+                <AppBar>
+                    <Toolbar></Toolbar>
+                </AppBar>
                 <Container className={styles.CoreContainer}>
                     <WarhammerCharacterSheet sheet={initSheet} />
                 </Container>

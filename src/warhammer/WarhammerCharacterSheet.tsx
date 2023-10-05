@@ -2,15 +2,14 @@ import * as React from "react";
 import { FormikProps, withFormik } from "formik";
 import { IWarhammerCharacteristics } from "./models";
 import {
-    Container,
+    Drawer,
     Grid,
-    Paper,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    TextField,
 } from "@mui/material";
 import NumberInputField from "../common/NumberInputField";
 import styles from "./WarhammerCharacterSheet.module.css";
@@ -38,129 +37,50 @@ const WarhammerCharacterSheet: React.FC<
                         );
                     },
                 },
+                {
+                    keyName: "ballisticSkill",
+                    label: "Ballistic Skill",
+                    componentFormat: (data: any) => {
+                        return (
+                            <NumberInputField
+                                name="ballisticSkill"
+                                className={styles.characteristicNumberInput}
+                            />
+                        );
+                    },
+                },
+                {
+                    keyName: "weaponSkill",
+                    label: "Weapon Skill",
+                    componentFormat: (data: any) => {
+                        return (
+                            <NumberInputField
+                                name="weaponSkill"
+                                className={styles.characteristicNumberInput}
+                            />
+                        );
+                    },
+                },
             ]}
-            data={[props.values]}
+            data={[
+                props.values,
+                props.values,
+                props.values,
+                props.values,
+                props.values,
+            ]}
         />
     );
 
-    const grid = (
+    return (
         <Grid container spacing={2}>
-            <TableContainer component={Paper}>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Weapon Skill</TableCell>
-                            <TableCell>Ballistic Skill</TableCell>
-                            <TableCell>Strength</TableCell>
-                            <TableCell>Toughness</TableCell>
-                            <TableCell>Initiative</TableCell>
-                            <TableCell>Agility</TableCell>
-                            <TableCell>Dexterity</TableCell>
-                            <TableCell>Intelligence</TableCell>
-                            <TableCell>Willpower</TableCell>
-                            <TableCell>Fellowship</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>
-                                <NumberInputField
-                                    name="weaponSkill"
-                                    className={styles.characteristicNumberInput}
-                                />
-                            </TableCell>
-                            <TableCell>
-                                <NumberInputField
-                                    name="ballisticSkill"
-                                    className={styles.characteristicNumberInput}
-                                />
-                            </TableCell>
-                            <TableCell>
-                                <NumberInputField
-                                    name="strength"
-                                    className={styles.characteristicNumberInput}
-                                />
-                            </TableCell>
-                            <TableCell>
-                                <NumberInputField
-                                    name="toughness"
-                                    className={styles.characteristicNumberInput}
-                                />
-                            </TableCell>
-                            <TableCell>
-                                <NumberInputField
-                                    name="ballisticSkill"
-                                    className={styles.characteristicNumberInput}
-                                />
-                            </TableCell>
-                            <TableCell>
-                                <NumberInputField
-                                    name="agility"
-                                    className={styles.characteristicNumberInput}
-                                />
-                            </TableCell>
-                            <TableCell>
-                                <NumberInputField
-                                    name="dexterity"
-                                    className={styles.characteristicNumberInput}
-                                />
-                            </TableCell>
-                            <TableCell>
-                                <NumberInputField
-                                    name="intelligence"
-                                    className={styles.characteristicNumberInput}
-                                />
-                            </TableCell>
-                            <TableCell>
-                                <NumberInputField
-                                    name="willpower"
-                                    className={styles.characteristicNumberInput}
-                                />
-                            </TableCell>
-                            <TableCell>
-                                <NumberInputField
-                                    name="fellowship"
-                                    className={styles.characteristicNumberInput}
-                                />
-                            </TableCell>
-                        </TableRow>
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            <CoreTable<IWarhammerCharacteristics>
-                headers={[
-                    {
-                        keyName: "agility",
-                        label: "Agility",
-                        componentFormat: (data: any) => {
-                            return (
-                                <NumberInputField
-                                    name="agility"
-                                    className={styles.characteristicNumberInput}
-                                />
-                            );
-                        },
-                    },
-                ]}
-                data={[
-                    {
-                        weaponSkill: 80,
-                        ballisticSkill: 75,
-                        strength: 60,
-                        toughness: 65,
-                        agility: 45,
-                        dexterity: 70,
-                        initiative: 90,
-                        intelligence: 40,
-                        willpower: 20,
-                        fellowship: 70,
-                    },
-                ]}
-            />
+            <Grid item xs={2} />
+            <Grid item xs={8}>
+                {table}
+            </Grid>
+            <Grid item xs={2} />
         </Grid>
     );
-
-    return <Grid>{table}</Grid>;
 };
 
 const formikConnect = withFormik<
