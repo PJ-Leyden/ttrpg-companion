@@ -1,11 +1,14 @@
 import {
+    Paper,
     Table,
     TableBody,
     TableCell,
+    TableContainer,
     TableHead,
     TableRow,
 } from "@mui/material";
 import { ReactElement, useCallback, useMemo } from "react";
+import styles from "./CoreTable.module.css";
 
 export interface IAllStringKeyProps {
     [key: string]: any;
@@ -33,14 +36,22 @@ export interface ICoreTableHeader<T extends IAllStringKeyProps> {
 const CoreTable = <T extends IAllStringKeyProps>(props: ICoreTableProps<T>) => {
     const tableHeaders = useMemo(() => {
         return props.headers.map((header) => {
-            return <TableCell>{header.label}</TableCell>;
+            return (
+                <TableCell className={styles.headerCell}>
+                    {header.label}
+                </TableCell>
+            );
         });
     }, [props.headers]);
 
     const buildDataCell = useCallback(
         (columnHeader: ICoreTableHeader<T>, data: any) => {
             if (columnHeader.componentFormat) {
-                return columnHeader.componentFormat(data);
+                return (
+                    <TableCell align="center" className={styles.dataCell}>
+                        {columnHeader.componentFormat(data)}
+                    </TableCell>
+                );
             }
             return <TableCell>{data}</TableCell>;
         },
@@ -63,12 +74,14 @@ const CoreTable = <T extends IAllStringKeyProps>(props: ICoreTableProps<T>) => {
     }, [buildDataCell, props.data, props.headers]);
 
     return (
-        <Table>
-            <TableHead>
-                <TableRow>{tableHeaders}</TableRow>
-            </TableHead>
-            <TableBody>{tableRows}</TableBody>
-        </Table>
+        <TableContainer component={Paper}>
+            <Table>
+                <TableHead>
+                    <TableRow>{tableHeaders}</TableRow>
+                </TableHead>
+                <TableBody>{tableRows}</TableBody>
+            </Table>
+        </TableContainer>
     );
 };
 

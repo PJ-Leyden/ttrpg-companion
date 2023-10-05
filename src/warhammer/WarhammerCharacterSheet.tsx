@@ -2,6 +2,7 @@ import * as React from "react";
 import { FormikProps, withFormik } from "formik";
 import { IWarhammerCharacteristics } from "./models";
 import {
+    Container,
     Grid,
     Paper,
     Table,
@@ -22,7 +23,27 @@ export interface IWarhammerCharacterSheetProps {
 const WarhammerCharacterSheet: React.FC<
     IWarhammerCharacterSheetProps & FormikProps<IWarhammerCharacteristics>
 > = (props) => {
-    return (
+    const table = (
+        <CoreTable<IWarhammerCharacteristics>
+            headers={[
+                {
+                    keyName: "agility",
+                    label: "Agility",
+                    componentFormat: (data: any) => {
+                        return (
+                            <NumberInputField
+                                name="agility"
+                                className={styles.characteristicNumberInput}
+                            />
+                        );
+                    },
+                },
+            ]}
+            data={[props.values]}
+        />
+    );
+
+    const grid = (
         <Grid container spacing={2}>
             <TableContainer component={Paper}>
                 <Table>
@@ -138,6 +159,8 @@ const WarhammerCharacterSheet: React.FC<
             />
         </Grid>
     );
+
+    return <Grid>{table}</Grid>;
 };
 
 const formikConnect = withFormik<
