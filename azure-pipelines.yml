@@ -13,7 +13,6 @@ pool:
 
 steps:
 - task: AzureStaticWebApp@0
-  name: "Static_Deploy"
   inputs:
     app_location: '/'
     api_location: 'api'
