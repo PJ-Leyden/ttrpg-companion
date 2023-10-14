@@ -1,16 +1,7 @@
 import * as React from "react";
 import { FormikProps, withFormik } from "formik";
 import { IWarhammerCharacteristics } from "./models";
-import {
-    Drawer,
-    Grid,
-    List,
-    ListItem,
-    ListItemButton,
-    ListItemIcon,
-    ListItemText,
-    TextField,
-} from "@mui/material";
+import { Grid } from "@mui/material";
 import NumberInputField from "../common/NumberInputField";
 import styles from "./WarhammerCharacterSheet.module.css";
 import CoreTable from "../common/CoreTable";
@@ -26,12 +17,12 @@ const WarhammerCharacterSheet: React.FC<
         <CoreTable<IWarhammerCharacteristics>
             headers={[
                 {
-                    keyName: "agility",
-                    label: "Agility",
-                    componentFormat: (data: any) => {
+                    keyName: "weaponSkill",
+                    label: "Weapon Skill",
+                    componentFormat: (_data: any) => {
                         return (
                             <NumberInputField
-                                name="agility"
+                                name="weaponSkill"
                                 className={styles.characteristicNumberInput}
                             />
                         );
@@ -40,7 +31,7 @@ const WarhammerCharacterSheet: React.FC<
                 {
                     keyName: "ballisticSkill",
                     label: "Ballistic Skill",
-                    componentFormat: (data: any) => {
+                    componentFormat: (_data: any) => {
                         return (
                             <NumberInputField
                                 name="ballisticSkill"
@@ -50,35 +41,117 @@ const WarhammerCharacterSheet: React.FC<
                     },
                 },
                 {
-                    keyName: "weaponSkill",
-                    label: "Weapon Skill",
-                    componentFormat: (data: any) => {
+                    keyName: "strength",
+                    label: "Strength",
+                    componentFormat: (_data: any) => {
                         return (
                             <NumberInputField
-                                name="weaponSkill"
+                                name="strength"
+                                className={styles.characteristicNumberInput}
+                            />
+                        );
+                    },
+                },
+                {
+                    keyName: "toughness",
+                    label: "Toughness",
+                    componentFormat: (_data: any) => {
+                        return (
+                            <NumberInputField
+                                name="toughness"
+                                className={styles.characteristicNumberInput}
+                            />
+                        );
+                    },
+                },
+                {
+                    keyName: "initiative",
+                    label: "Initiative",
+                    componentFormat: (_data: any) => {
+                        return (
+                            <NumberInputField
+                                name="initiative"
+                                className={styles.characteristicNumberInput}
+                            />
+                        );
+                    },
+                },
+                {
+                    keyName: "agility",
+                    label: "Agility",
+                    componentFormat: (_data: any) => {
+                        return (
+                            <NumberInputField
+                                name="agility"
+                                className={styles.characteristicNumberInput}
+                            />
+                        );
+                    },
+                },
+                {
+                    keyName: "dexterity",
+                    label: "Dexterity",
+                    componentFormat: (_data: any) => {
+                        return (
+                            <NumberInputField
+                                name="dexterity"
+                                className={styles.characteristicNumberInput}
+                            />
+                        );
+                    },
+                },
+                {
+                    keyName: "intelligence",
+                    label: "Intelligence",
+                    componentFormat: (_data: any) => {
+                        return (
+                            <NumberInputField
+                                name="intelligence"
+                                className={styles.characteristicNumberInput}
+                            />
+                        );
+                    },
+                },
+                {
+                    keyName: "willpower",
+                    label: "Willpower",
+                    componentFormat: (_data: any) => {
+                        return (
+                            <NumberInputField
+                                name="willpower"
+                                className={styles.characteristicNumberInput}
+                            />
+                        );
+                    },
+                },
+                {
+                    keyName: "fellowship",
+                    label: "Fellowship",
+                    componentFormat: (_data: any) => {
+                        return (
+                            <NumberInputField
+                                name="fellowship"
                                 className={styles.characteristicNumberInput}
                             />
                         );
                     },
                 },
             ]}
-            data={[
-                props.values,
-                props.values,
-                props.values,
-                props.values,
-                props.values,
-            ]}
+            data={[props.values]}
         />
     );
 
     return (
-        <Grid container spacing={2}>
-            <Grid item xs={2} />
-            <Grid item xs={8}>
+        <Grid
+            container
+            spacing={2}
+            sx={{ marginLeft: "auto", marginRight: "auto" }}
+        >
+            <Grid item xs={1} />
+            <Grid item xs={10}>
                 {table}
             </Grid>
-            <Grid item xs={2} />
+            <Grid item xs={1} />
         </Grid>
     );
 };
