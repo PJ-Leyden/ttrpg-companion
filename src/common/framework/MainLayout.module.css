@@ -1,0 +1,52 @@
+.CoreContainer {
+    margin-top: 100px;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    flex-grow: 1;
+}
+
+.LeftNav {
+    background-color: blueviolet;
+    width: 80px;
+    height: 100%;
+    margin-top: 64px;
+}
+
+.GridClass {
+    height: 100%;
+}
+
+.top {
+    display: block;
+}
+
+.appBar {
+    width: 100%;
+    height: 64px;
+    background-color: aqua;
+}
+
+.test {
+    width: 250px;
+    height: Calc(100vh - 64px);
+    background-color: blueviolet;
+    transition: width 0.8s ease-out;
+    /* animation: example 0.8s reverse ease-out; */
+}
+
+.testStart {
+    width: 64px;
+}
+
+.testEnd {
+    width: 250px;
+}
+
+@keyframes example {
+    from {
+        width: 250px;
+    }
+    to {
+        width: 64px;
+    }
+}
