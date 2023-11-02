@@ -15,6 +15,7 @@ export interface IAllStringKeyProps {
 }
 
 export interface ICoreTableProps<T extends IAllStringKeyProps> {
+    className?: string;
     headers: ICoreTableHeader<T>[];
     data: T[];
 }
@@ -74,7 +75,7 @@ const CoreTable = <T extends IAllStringKeyProps>(props: ICoreTableProps<T>) => {
     }, [buildDataCell, props.data, props.headers]);
 
     return (
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} className={props.className}>
             <Table>
                 <TableHead>
                     <TableRow>{tableHeaders}</TableRow>

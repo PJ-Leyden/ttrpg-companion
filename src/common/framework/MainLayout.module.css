@@ -31,6 +31,7 @@
     height: Calc(100vh - 64px);
     background-color: blueviolet;
     transition: width 0.8s ease-out;
+    display: flex;
     /* animation: example 0.8s reverse ease-out; */
 }
 
@@ -49,4 +50,8 @@
     to {
         width: 64px;
     }
+}
+
+.flexBoi {
+    display: flex;
 }

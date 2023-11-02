@@ -147,11 +147,7 @@ const WarhammerCharacterSheet: React.FC<
             spacing={2}
             sx={{ marginLeft: "auto", marginRight: "auto" }}
         >
-            <Grid item xs={1} />
-            <Grid item xs={10}>
-                {table}
-            </Grid>
-            <Grid item xs={1} />
+            <Grid item>{table}</Grid>
         </Grid>
     );
 };

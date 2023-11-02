@@ -127,31 +127,26 @@ const MainLayout: React.FC<IMainLayoutProps> = (props) => {
     };
 
     return (
-        <div className={styles.top}>
-            {/* {AppMenu}
-            <Grid container className={styles.GridClass}>
-                <Grid item>
-                    <Container className={styles.LeftNav}>
-                        <Container>Hello</Container>
-                    </Container>
-                </Grid>
-                <Grid item>
-                    <Container className={styles.CoreContainer}>
-                        <WarhammerCharacterSheet sheet={initSheet} />
-                    </Container>
-                </Grid>
-            </Grid> */}
-            <div className={styles.appBar}>
-                <button onClick={() => setDrawerOpen2(!drawerOpen2)}>
+        <div id="top-level-div" className={styles.top}>
+            <div id="top-app-bar" className={styles.appBar}>
+                <button
+                    id="test-menu-button"
+                    onClick={() => setDrawerOpen2(!drawerOpen2)}
+                >
                     Close
                 </button>
             </div>
-            <div
-                id="bork"
-                className={`${styles.test} ${
-                    drawerOpen2 ? styles.testEnd : styles.testStart
-                }`}
-            />
+            <div id="" className={styles.flexBoi}>
+                <div
+                    id="bork"
+                    className={`${styles.test} ${
+                        drawerOpen2 ? styles.testEnd : styles.testStart
+                    }`}
+                />
+                <div>
+                    <WarhammerCharacterSheet sheet={initSheet} />
+                </div>
+            </div>
         </div>
     );
 };
