@@ -15,7 +15,6 @@ import {
     ListItemButton,
     ListItemIcon,
     ListItemText,
-    Grid,
 } from "@mui/material";
 import WarhammerCharacterSheet from "../../warhammer/WarhammerCharacterSheet";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -127,8 +126,8 @@ const MainLayout: React.FC<IMainLayoutProps> = (props) => {
     };
 
     return (
-        <div id="top-level-div" className={styles.top}>
-            <div id="top-app-bar" className={styles.appBar}>
+        <div id="main-container" className={styles.top}>
+            <div id="application-bar" className={styles.appBar}>
                 <button
                     id="test-menu-button"
                     onClick={() => setDrawerOpen2(!drawerOpen2)}
@@ -136,15 +135,15 @@ const MainLayout: React.FC<IMainLayoutProps> = (props) => {
                     Close
                 </button>
             </div>
-            <div id="" className={styles.flexBoi}>
+            <div id="content-container" className={styles.flexBoi}>
                 <div
-                    id="bork"
+                    id="left-nav-container"
                     className={`${styles.test} ${
                         drawerOpen2 ? styles.testEnd : styles.testStart
                     }`}
                 />
-                <div>
-                    <WarhammerCharacterSheet sheet={initSheet} />
+                <div id="page-container" className={styles.pageContainer}>
+                    {props.coreWebsiteComponent}
                 </div>
             </div>
         </div>

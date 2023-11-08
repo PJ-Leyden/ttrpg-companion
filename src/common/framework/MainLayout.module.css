@@ -32,7 +32,6 @@
     background-color: blueviolet;
     transition: width 0.8s ease-out;
     display: flex;
-    /* animation: example 0.8s reverse ease-out; */
 }
 
 .testStart {
@@ -43,15 +42,11 @@
     width: 250px;
 }
 
-@keyframes example {
-    from {
-        width: 250px;
-    }
-    to {
-        width: 64px;
-    }
-}
-
 .flexBoi {
     display: flex;
+}
+
+.pageContainer {
+    display: flex;
+    flex-grow: 1;
 }
