@@ -1,3 +1,6 @@
 {
-    "editor.insertSpaces": false
+    "editor.insertSpaces": false,
+    "appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"],
+    "appService.defaultWebAppToDeploy": "/subscriptions/4f21ac75-d99a-498a-972a-c4be490a2f04/resourceGroups/hs-ttrpg-companion-resource-group/providers/Microsoft.Web/sites/ttrpg-companion",
+    "appService.deploySubpath": "."
 }
