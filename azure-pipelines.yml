@@ -27,11 +27,10 @@ steps:
     PathtoPublish: 'build'
     ArtifactName: 'drop'
     publishLocation: 'Container'
-- task: AzureRmWebAppDeployment@4
+- task: AzureWebApp@1
   inputs:
-    ConnectionType: 'AzureRM'
     azureSubscription: 'PJs Azure Subscription(4f21ac75-d99a-498a-972a-c4be490a2f04)'
     appType: 'webAppLinux'
-    WebAppName: 'ttrpg-companion'
-    packageForLinux: 'build'
-    RuntimeStack: 'NODE|18-lts'
+    appName: 'ttrpg-companion'
+    package: 'build'
+    runtimeStack: 'NODE|18-lts'
