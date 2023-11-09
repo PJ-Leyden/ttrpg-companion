@@ -31,10 +31,11 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'ui'
     publishLocation: 'Container'
-- task: AzureWebApp@1
+- task: AzureRmWebAppDeployment@4
   inputs:
+    ConnectionType: 'AzureRM'
     azureSubscription: 'PJs Azure Subscription(4f21ac75-d99a-498a-972a-c4be490a2f04)'
     appType: 'webAppLinux'
-    appName: 'ttrpg-companion'
-    package: '$(Build.ArtifactStagingDirectory)/ui.zip'
-    runtimeStack: 'NODE|18-lts'
+    WebAppName: 'ttrpg-companion'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/ui.zip'
+    RuntimeStack: 'NODE|18-lts'
