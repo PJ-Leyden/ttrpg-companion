@@ -15,11 +15,9 @@ steps:
 - task: Npm@1
   inputs:
     command: 'ci'
-    workingDir: 'ui'
 - task: Npm@1
   inputs:
     command: 'custom'
-    workingDir: 'ui'
     customCommand: 'run build'
 - task: PublishBuildArtifacts@1
   inputs:
