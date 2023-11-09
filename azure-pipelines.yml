@@ -22,32 +22,16 @@ steps:
 - script: |
     npm run build
   displayName: 'npm build'
-- task: CopyFiles@2
+- task: PublishBuildArtifacts@1
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: |
-      src/*
-      public/*
-      package.json
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-  displayName: 'Copy Project Files'
-- task: ArchiveFiles@2
+    PathtoPublish: 'build'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+- task: AzureRmWebAppDeployment@4
   inputs:
-    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/ttrpg-companion-ui.zip'
-    replaceExistingArchive: true
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)'
-    artifact: 'ttrpg-companion-ui'
-    publishLocation: 'pipeline'
-  displayName: 'Publish npm artifact'
-- task: AzureWebApp@1
-  inputs:
+    ConnectionType: 'AzureRM'
     azureSubscription: 'PJs Azure Subscription(4f21ac75-d99a-498a-972a-c4be490a2f04)'
     appType: 'webAppLinux'
-    appName: 'ttrpg-companion'
-    package: 'pipeline/ttrpg-companion-ui.zip'
-    runtimeStack: 'NODE|18-lts'
+    WebAppName: 'ttrpg-companion'
+    packageForLinux: 'build'
+    RuntimeStack: 'NODE|18-lts'
