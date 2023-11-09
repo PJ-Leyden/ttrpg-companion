@@ -19,15 +19,15 @@ steps:
   inputs:
     command: 'custom'
     customCommand: 'run build'
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: 'build'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/ui.zip'
+    replaceExistingArchive: true
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: 'build'
-    ArtifactName: 'drop'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'ui'
     publishLocation: 'Container'
-- task: AzureWebApp@1
-  inputs:
-    azureSubscription: 'PJs Azure Subscription(4f21ac75-d99a-498a-972a-c4be490a2f04)'
-    appType: 'webAppLinux'
-    appName: 'ttrpg-companion'
-    package: 'build'
-    runtimeStack: 'NODE|18-lts'
