@@ -14,14 +14,15 @@ pool:
 steps:
 - task: Npm@1
   inputs:
-    command: 'install'
+    command: 'ci'
+    workingDir: 'ui'
 - task: Npm@1
   inputs:
     command: 'custom'
-    workingDir: 'build'
-    customCommand: 'npm run build'
+    workingDir: 'ui'
+    customCommand: 'run build'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
+    ArtifactName: 'ui'
     publishLocation: 'Container'
