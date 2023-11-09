@@ -12,30 +12,27 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: Npm@1
+- task: NodeTool@0
   inputs:
-    command: 'ci'
-- task: Npm@1
+    versionSource: 'spec'
+    versionSpec: '18.x'
+- script: |
+    npm install
+  displayName: 'npm install'
+- script: |
+    npm run build
+  displayName: 'npm build'
+- task: CopyFiles@2
   inputs:
-    command: 'custom'
-    customCommand: 'run build'
-- task: ArchiveFiles@2
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: |
+      src/*
+      public/*
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+  displayName: 'Copy Project Files'
+- task: PublishPipelineArtifact@1
   inputs:
-    rootFolderOrFile: 'build'
-    includeRootFolder: true
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/ui.zip'
-    replaceExistingArchive: true
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'ui'
-    publishLocation: 'Container'
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'PJs Azure Subscription(4f21ac75-d99a-498a-972a-c4be490a2f04)'
-    appType: 'webAppLinux'
-    WebAppName: 'ttrpg-companion'
-    packageForLinux: '$(Build.ArtifactStagingDirectory)/ui.zip'
-    RuntimeStack: 'NODE|18-lts'
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+    artifact: 'ttrpg-companion-ui'
+    publishLocation: 'pipeline'
+  displayName: 'Publish npm artifact'
