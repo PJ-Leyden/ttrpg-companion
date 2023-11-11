@@ -142,11 +142,9 @@ const WarhammerCharacterSheet: React.FC<
     );
 
     return (
-        <div className={styles.pageLayout}>
-            <Grid className={styles.characterSheetGrid}>
-                <Grid item>{table}</Grid>
-            </Grid>
-        </div>
+        <Grid container justifyContent="center" sx={{ margin: "20px" }}>
+            <Grid item>{table}</Grid>
+        </Grid>
     );
 };
 

@@ -23,13 +23,13 @@
 .appBar {
     width: 100%;
     height: 64px;
-    background-color: aqua;
+    background-color: black;
 }
 
 .test {
     width: 250px;
     height: Calc(100vh - 64px);
-    background-color: blueviolet;
+    background-color: lightgray;
     transition: width 0.8s ease-out;
     display: flex;
 }

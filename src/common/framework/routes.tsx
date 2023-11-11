@@ -17,11 +17,7 @@ const initSheet: IWarhammerCharacteristics = {
 
 export const routes: RouteObject[] = [
     {
-        path: "/test",
-        element: <WarhammerCharacterSheet sheet={initSheet} />,
-    },
-    {
-        path: "/hello",
+        path: "/warhammer",
         element: <WarhammerCharacterSheet sheet={initSheet} />,
     },
     {
