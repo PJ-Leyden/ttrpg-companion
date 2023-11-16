@@ -5,7 +5,6 @@ import { Grid } from "@mui/material";
 import NumberInputField from "../common/NumberInputField";
 import styles from "./WarhammerCharacterSheet.module.css";
 import CoreTable from "../common/CoreTable";
-import { Link } from "react-router-dom";
 
 export interface IWarhammerCharacterSheetProps {
     sheet: IWarhammerCharacteristics;
@@ -143,20 +142,9 @@ const WarhammerCharacterSheet: React.FC<
     );
 
     return (
-<<<<<<< HEAD
-        <div className={styles.pageLayout}>
-            <Grid className={styles.characterSheetGrid}>
-                <Grid item>{table}</Grid>
-                <Grid item>
-                    <Link to="/hello">Click!</Link>
-                </Grid>
-            </Grid>
-        </div>
-=======
         <Grid container justifyContent="center" sx={{ margin: "20px" }}>
             <Grid item>{table}</Grid>
         </Grid>
->>>>>>> dc06b29fd7299ce4ed4e398be75b86608fc83d98
     );
 };
 

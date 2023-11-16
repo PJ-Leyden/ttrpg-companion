@@ -19,11 +19,6 @@ export const routes: RouteObject[] = [
     {
         path: "/warhammer",
         element: <WarhammerCharacterSheet sheet={initSheet} />,
-        children: [
-            {
-                path: "/:",
-            },
-        ],
     },
     {
         path: "/hello",
