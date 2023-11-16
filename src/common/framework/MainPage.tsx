@@ -12,9 +12,7 @@ interface IMainPageProps {}
 const MainPage: React.FC<IMainPageProps> = (props) => {
     const router = createBrowserRouter(routes);
 
-    return (
-        <MainLayout coreWebsiteComponent={<RouterProvider router={router} />} />
-    );
+    return <MainLayout />;
 };
 
 export default MainPage;

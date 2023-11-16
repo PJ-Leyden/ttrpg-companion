@@ -1,13 +1,18 @@
 import { ReactElement } from "react";
 import styles from "./MainLayout.module.css";
 import { useState } from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { routes } from "./routes";
+import TestComponent from "./TestComponent";
 
 interface IMainLayoutProps {
-    coreWebsiteComponent: ReactElement;
+    coreWebsiteComponent?: ReactElement;
 }
 
 const MainLayout: React.FC<IMainLayoutProps> = (props) => {
     const [drawerOpen2, setDrawerOpen2] = useState<boolean>(false);
+
+    const router = createBrowserRouter(routes);
 
     return (
         <div id="main-container" className={styles.top}>
@@ -27,7 +32,8 @@ const MainLayout: React.FC<IMainLayoutProps> = (props) => {
                     }`}
                 />
                 <div id="page-container" className={styles.pageContainer}>
-                    {props.coreWebsiteComponent}
+                    {/* {props.coreWebsiteComponent} */}
+                    <TestComponent />
                 </div>
             </div>
         </div>

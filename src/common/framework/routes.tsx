@@ -1,4 +1,4 @@
-import { RouteObject } from "react-router-dom";
+import { Link, RouteObject } from "react-router-dom";
 import WarhammerCharacterSheet from "../../warhammer/WarhammerCharacterSheet";
 import { IWarhammerCharacteristics } from "../../warhammer/models";
 
@@ -17,8 +17,13 @@ const initSheet: IWarhammerCharacteristics = {
 
 export const routes: RouteObject[] = [
     {
-        path: "/test",
+        path: "/warhammer",
         element: <WarhammerCharacterSheet sheet={initSheet} />,
+        children: [
+            {
+                path: "/:",
+            },
+        ],
     },
     {
         path: "/hello",
@@ -26,6 +31,6 @@ export const routes: RouteObject[] = [
     },
     {
         path: "/",
-        element: <></>,
+        element: <Link to="/hello">Click!</Link>,
     },
 ];
