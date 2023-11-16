@@ -36,9 +36,12 @@ export interface ICoreTableHeader<T extends IAllStringKeyProps> {
 
 const CoreTable = <T extends IAllStringKeyProps>(props: ICoreTableProps<T>) => {
     const tableHeaders = useMemo(() => {
-        return props.headers.map((header) => {
+        return props.headers.map((header, index) => {
             return (
-                <TableCell className={styles.headerCell}>
+                <TableCell
+                    key={`${index}-${header.label}`}
+                    className={styles.headerCell}
+                >
                     {header.label}
                 </TableCell>
             );
@@ -46,10 +49,14 @@ const CoreTable = <T extends IAllStringKeyProps>(props: ICoreTableProps<T>) => {
     }, [props.headers]);
 
     const buildDataCell = useCallback(
-        (columnHeader: ICoreTableHeader<T>, data: any) => {
+        (index: number, columnHeader: ICoreTableHeader<T>, data: any) => {
             if (columnHeader.componentFormat) {
                 return (
-                    <TableCell align="center" className={styles.dataCell}>
+                    <TableCell
+                        key={index}
+                        align="center"
+                        className={styles.dataCell}
+                    >
                         {columnHeader.componentFormat(data)}
                     </TableCell>
                 );
@@ -60,11 +67,12 @@ const CoreTable = <T extends IAllStringKeyProps>(props: ICoreTableProps<T>) => {
     );
 
     const tableRows = useMemo(() => {
-        return props.data.map((rowItem) => {
+        return props.data.map((rowItem, index) => {
             return (
-                <TableRow>
-                    {props.headers.map((columnHeader, _index) => {
+                <TableRow key={index}>
+                    {props.headers.map((columnHeader, index) => {
                         return buildDataCell(
+                            index,
                             columnHeader,
                             rowItem[columnHeader.keyName]
                         );

@@ -1,16 +1,16 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import WarhammerCharacterSheet from "../../warhammer/WarhammerCharacterSheet";
-import { IWarhammerCharacteristics } from "../../warhammer/models";
 import MainLayout from "./MainLayout";
 import { routes } from "./routes";
+import { useCallback, useEffect, useState } from "react";
+import Login from "./Login/Login";
+import { CircularProgress } from "@mui/material";
 
 interface IMainPageProps {}
 
-/**
- * Meant for the router.
- */
 const MainPage: React.FC<IMainPageProps> = (props) => {
     const router = createBrowserRouter(routes);
+    const [token, setToken] = useState<string | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
 
     return <MainLayout />;
 };

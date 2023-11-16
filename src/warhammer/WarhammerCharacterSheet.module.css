@@ -1,15 +1,4 @@
-.pageLayout {
-    display: flex;
-    flex-grow: 1;
-    justify-content: center;
-}
-
 .characteristicNumberInput {
     max-width: 5em;
     text-align: center;
-}
-
-.characterSheetGrid {
-    margin: 0 0 0 0;
-    justify-content: center;
 }
