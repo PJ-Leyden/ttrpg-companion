@@ -1,6 +1,7 @@
-import { Button, Grid, TextField } from "@mui/material";
+import { Button, Grid, Snackbar, TextField } from "@mui/material";
 import { FormikProps, withFormik } from "formik";
 import styles from "./Signup.module.css";
+import { useState } from "react";
 
 export interface ISignupProps {}
 
@@ -14,6 +15,8 @@ export interface IUserSignup {
 }
 
 const Signup: React.FC<ISignupProps & FormikProps<IUserSignup>> = (props) => {
+    const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
+
     return (
         <Grid
             container
@@ -48,6 +51,7 @@ const Signup: React.FC<ISignupProps & FormikProps<IUserSignup>> = (props) => {
                     Signup
                 </Button>
             </Grid>
+            <Snackbar open={showSnackbar} message="Hi" />
         </Grid>
     );
 };
