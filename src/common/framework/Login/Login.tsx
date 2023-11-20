@@ -2,6 +2,7 @@ import { Button, Grid, TextField } from "@mui/material";
 import styles from "./Login.module.css";
 import { FormikProps, withFormik } from "formik";
 import { IUserLogin } from "./models";
+import axios from "axios";
 
 export interface ILoginProps {
     setToken: (token: string) => void;
@@ -29,19 +30,34 @@ const Login: React.FC<ILoginProps & FormikProps<IUserLogin>> = (props) => {
                     variant="contained"
                     onClick={() => props.handleSubmit()}
                 >
-                    Submit
+                    Login
                 </Button>
+            </Grid>
+            <Grid>
+                <Button variant="text">Signup</Button>
             </Grid>
         </Grid>
     );
 };
 
 const formikConnect = withFormik<ILoginProps, IUserLogin>({
-    handleSubmit: (values, formikBag) => {
+    handleSubmit: async (values, formikBag) => {
         /**
          * TODO: Need to actually call out to function app to receive token.
          */
-        formikBag.props.setToken("default_token");
+        // console.log("Attempt...");
+        // const response = await axios.post<string>(
+        //     "http://localhost:7024/api/CreateUser",
+        //     {
+        //         firstName: "PJ",
+        //         lastName: "Leyden",
+        //         username: "HelicalMists",
+        //         email: "pjleyden1@gmail.com",
+        //         password: "Test1234",
+        //     }
+        // );
+        // console.log(response.data);
+        //formikBag.props.setToken("default_token");
     },
 });
 
