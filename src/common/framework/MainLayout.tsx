@@ -1,14 +1,19 @@
 import { ReactElement, useState } from "react";
 import styles from "./MainLayout.module.css";
-import MenuIcon from "@mui/icons-material/Menu";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { routes } from "./routes";
+import TestComponent from "./TestComponent";
 import { Grid } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 
 interface IMainLayoutProps {
-    coreWebsiteComponent: ReactElement;
+    coreWebsiteComponent?: ReactElement;
 }
 
 const MainLayout: React.FC<IMainLayoutProps> = (props) => {
     const [leftNavOpen, setLeftNavOpen] = useState<boolean>(false);
+
+    const router = createBrowserRouter(routes);
 
     return (
         <div id="main-container" className={styles.top}>
@@ -32,7 +37,8 @@ const MainLayout: React.FC<IMainLayoutProps> = (props) => {
                     }`}
                 />
                 <div id="page-container" className={styles.pageContainer}>
-                    {props.coreWebsiteComponent}
+                    {/* {props.coreWebsiteComponent} */}
+                    <TestComponent />
                 </div>
             </div>
         </div>

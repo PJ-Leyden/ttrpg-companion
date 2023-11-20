@@ -1,6 +1,7 @@
-import { RouteObject } from "react-router-dom";
+import { Link, RouteObject } from "react-router-dom";
 import WarhammerCharacterSheet from "../../warhammer/WarhammerCharacterSheet";
 import { IWarhammerCharacteristics } from "../../warhammer/models";
+import { Button } from "@mui/material";
 
 const initSheet: IWarhammerCharacteristics = {
     weaponSkill: 80,
@@ -22,6 +23,6 @@ export const routes: RouteObject[] = [
     },
     {
         path: "/",
-        element: <></>,
+        element: <Link to="/warhammer">Warhammer</Link>,
     },
 ];
