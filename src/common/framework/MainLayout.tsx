@@ -1,6 +1,6 @@
 import { ReactElement, useState } from "react";
 import styles from "./MainLayout.module.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { routes } from "./routes";
 import TestComponent from "./TestComponent";
 import { Grid } from "@mui/material";
@@ -37,8 +37,7 @@ const MainLayout: React.FC<IMainLayoutProps> = (props) => {
                     }`}
                 />
                 <div id="page-container" className={styles.pageContainer}>
-                    {/* {props.coreWebsiteComponent} */}
-                    <TestComponent />
+                    <Outlet />
                 </div>
             </div>
         </div>

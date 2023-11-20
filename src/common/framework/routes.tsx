@@ -1,7 +1,10 @@
-import { Link, RouteObject } from "react-router-dom";
+import { RouteObject, redirect } from "react-router-dom";
 import WarhammerCharacterSheet from "../../warhammer/WarhammerCharacterSheet";
 import { IWarhammerCharacteristics } from "../../warhammer/models";
-import { Button } from "@mui/material";
+import MainLayout from "./MainLayout";
+import Signup from "./Login/Signup";
+import Login from "./Login/Login";
+import { getTokenCookie } from "./Login/getTokenCookie";
 
 const initSheet: IWarhammerCharacteristics = {
     weaponSkill: 80,
@@ -18,11 +21,29 @@ const initSheet: IWarhammerCharacteristics = {
 
 export const routes: RouteObject[] = [
     {
-        path: "/warhammer",
-        element: <WarhammerCharacterSheet sheet={initSheet} />,
+        path: "/login",
+        element: <Login />,
+    },
+    {
+        path: "/signup",
+        element: <Signup />,
     },
     {
         path: "/",
-        element: <Link to="/warhammer">Warhammer</Link>,
+        element: <MainLayout />,
+        loader: async () => {
+            const tokenCookie = getTokenCookie();
+            if (tokenCookie === "") {
+                return redirect("/login");
+            }
+
+            return null;
+        },
+        children: [
+            {
+                path: "warhammer",
+                element: <WarhammerCharacterSheet sheet={initSheet} />,
+            },
+        ],
     },
 ];

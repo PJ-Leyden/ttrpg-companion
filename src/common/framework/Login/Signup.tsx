@@ -1,13 +1,19 @@
 import { Button, Grid, TextField } from "@mui/material";
-import styles from "./Login.module.css";
 import { FormikProps, withFormik } from "formik";
-import { IUserLogin } from "./models";
-import { Link } from "react-router-dom";
-//import axios from "axios";
+import styles from "./Signup.module.css";
 
-export interface ILoginProps {}
+export interface ISignupProps {}
 
-const Login: React.FC<ILoginProps & FormikProps<IUserLogin>> = (props) => {
+export interface IUserSignup {
+    firstName: string;
+    lastName: string;
+    username: string;
+    email: string;
+    password: string;
+    reTypePassword: string;
+}
+
+const Signup: React.FC<ISignupProps & FormikProps<IUserSignup>> = (props) => {
     return (
         <Grid
             container
@@ -17,7 +23,17 @@ const Login: React.FC<ILoginProps & FormikProps<IUserLogin>> = (props) => {
             rowSpacing={2}
             sx={{ minHeight: "100vh" }}
         >
-            <Grid className={styles.loginText}>Login</Grid>
+            <Grid className={styles.loginText}>Signup</Grid>
+            <Grid item>
+                <Grid container direction="row" columnSpacing={2}>
+                    <Grid item>
+                        <TextField label="First Name" />
+                    </Grid>
+                    <Grid item>
+                        <TextField label="Last Name" />
+                    </Grid>
+                </Grid>
+            </Grid>
             <Grid item>
                 <TextField type="text" label="Username" />
             </Grid>
@@ -29,21 +45,14 @@ const Login: React.FC<ILoginProps & FormikProps<IUserLogin>> = (props) => {
                     variant="contained"
                     onClick={() => props.handleSubmit()}
                 >
-                    Login
+                    Signup
                 </Button>
-            </Grid>
-            <Grid item>
-                <Link to="/signup">
-                    <Button type="button" variant="contained">
-                        Signup
-                    </Button>
-                </Link>
             </Grid>
         </Grid>
     );
 };
 
-const formikConnect = withFormik<ILoginProps, IUserLogin>({
+const formikConnect = withFormik<ISignupProps, IUserSignup>({
     handleSubmit: async (values, formikBag) => {
         /**
          * TODO: Need to actually call out to function app to receive token.
@@ -64,4 +73,4 @@ const formikConnect = withFormik<ILoginProps, IUserLogin>({
     },
 });
 
-export default formikConnect(Login);
+export default formikConnect(Signup);
