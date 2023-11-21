@@ -1,12 +1,14 @@
 import { TextField } from "@mui/material";
 import { getIn, useFormikContext } from "formik";
 
-export interface INumberInputFieldProps {
+export interface ITextInputFieldProps {
+    label?: string;
     name: string;
     className?: string;
+    type?: "text" | "password";
 }
 
-const NumberInputField: React.FC<INumberInputFieldProps> = (props) => {
+const TextInputField: React.FC<ITextInputFieldProps> = (props) => {
     const formik = useFormikContext();
     const value = getIn(formik.values, props.name);
 
@@ -19,7 +21,8 @@ const NumberInputField: React.FC<INumberInputFieldProps> = (props) => {
     return (
         <TextField
             suppressContentEditableWarning
-            type="number"
+            label={props.label}
+            type={props.type}
             value={value}
             onChange={onChange}
             className={props.className}
@@ -27,4 +30,4 @@ const NumberInputField: React.FC<INumberInputFieldProps> = (props) => {
     );
 };
 
-export default NumberInputField;
+export default TextInputField;

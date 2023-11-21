@@ -1,8 +1,6 @@
 import { ReactElement, useState } from "react";
 import styles from "./MainLayout.module.css";
-import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
-import { routes } from "./routes";
-import TestComponent from "./TestComponent";
+import { Outlet } from "react-router-dom";
 import { Grid } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
@@ -12,9 +10,6 @@ interface IMainLayoutProps {
 
 const MainLayout: React.FC<IMainLayoutProps> = (props) => {
     const [leftNavOpen, setLeftNavOpen] = useState<boolean>(false);
-
-    const router = createBrowserRouter(routes);
-
     return (
         <div id="main-container" className={styles.top}>
             <div id="application-bar" className={styles.appBar}>
