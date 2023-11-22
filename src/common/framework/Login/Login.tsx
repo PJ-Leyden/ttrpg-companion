@@ -17,7 +17,7 @@ const Login: React.FC<ILoginProps & FormikProps<IUserLogin>> = (props) => {
             rowSpacing={2}
             sx={{ minHeight: "100vh" }}
         >
-            <Grid className={styles.loginText}>Login</Grid>
+            <Grid className={styles.loginText}>Taco</Grid>
             <Grid item>
                 <TextField type="text" label="Username" />
             </Grid>
