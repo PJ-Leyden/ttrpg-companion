@@ -17,6 +17,7 @@ const initSheet: IWarhammerCharacteristics = {
     intelligence: 40,
     willpower: 20,
     fellowship: 70,
+    test: "",
 };
 
 export const routes: RouteObject[] = [
@@ -33,7 +34,7 @@ export const routes: RouteObject[] = [
         element: <MainLayout />,
         loader: async () => {
             const tokenCookie = getTokenCookie();
-            if (tokenCookie === "") {
+            if (tokenCookie !== "") {
                 return redirect("/login");
             }
 

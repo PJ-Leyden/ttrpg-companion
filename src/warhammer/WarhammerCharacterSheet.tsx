@@ -29,12 +29,12 @@ const WarhammerCharacterSheet: React.FC<
                     },
                 },
                 {
-                    keyName: "ballisticSkill",
+                    keyName: "weaponSkill",
                     label: "Ballistic Skill",
                     componentFormat: (_data: any) => {
                         return (
                             <NumberInputField
-                                name="ballisticSkill"
+                                name="weaponSkill"
                                 className={styles.characteristicNumberInput}
                             />
                         );

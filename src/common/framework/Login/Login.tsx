@@ -1,13 +1,13 @@
 import { Button, Grid, TextField } from "@mui/material";
 import styles from "./Login.module.css";
 import { FormikProps, withFormik } from "formik";
-import { IUserLogin } from "./models";
+import { IUserLoginForm } from "./models";
 import { Link } from "react-router-dom";
 //import axios from "axios";
 
 export interface ILoginProps {}
 
-const Login: React.FC<ILoginProps & FormikProps<IUserLogin>> = (props) => {
+const Login: React.FC<ILoginProps & FormikProps<IUserLoginForm>> = (props) => {
     return (
         <Grid
             container
@@ -43,7 +43,7 @@ const Login: React.FC<ILoginProps & FormikProps<IUserLogin>> = (props) => {
     );
 };
 
-const formikConnect = withFormik<ILoginProps, IUserLogin>({
+const formikConnect = withFormik<ILoginProps, IUserLoginForm>({
     handleSubmit: async (values, formikBag) => {
         /**
          * TODO: Need to actually call out to function app to receive token.

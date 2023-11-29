@@ -1,33 +1,32 @@
-import { TextField } from "@mui/material";
-import { getIn, useFormikContext } from "formik";
+import { SxProps, TextField, Theme } from "@mui/material";
+import { useField } from "formik";
 
 export interface ITextInputFieldProps {
-    label?: string;
-    name: string;
-    className?: string;
-    type?: "text" | "password";
+	name: string;
+	label?: string;
+	validate?: (value: any) => undefined | string | Promise<any>;
+	type?: "text" | "password";
+	required?: boolean;
+	sx?: SxProps<Theme>;
+	className?: string;
 }
 
 const TextInputField: React.FC<ITextInputFieldProps> = (props) => {
-    const formik = useFormikContext();
-    const value = getIn(formik.values, props.name);
+	const [field, meta] = useField(props);
+	const { required, label, type, className, sx } = props;
 
-    const onChange:
-        | React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>
-        | undefined = (event) => {
-        formik.setFieldValue(props.name, event.target.value);
-    };
-
-    return (
-        <TextField
-            suppressContentEditableWarning
-            label={props.label}
-            type={props.type}
-            value={value}
-            onChange={onChange}
-            className={props.className}
-        />
-    );
+	return (
+		<TextField
+			{...field}
+			label={label}
+			type={type}
+			className={className}
+			sx={sx}
+			error={meta.error !== undefined}
+			helperText={meta.error}
+			required={required}
+		/>
+	);
 };
 
 export default TextInputField;
