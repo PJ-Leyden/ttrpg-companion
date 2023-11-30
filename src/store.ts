@@ -1,12 +1,28 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import UserReducer from "./common/security/user/userSlice";
+import { persistReducer, persistStore } from "redux-persist";
+import storageSession from "redux-persist/lib/storage/session";
+import thunk from "redux-thunk";
 
-const store = configureStore({
-    reducer: {
-        user: UserReducer,
-    },
+const rootReducer = combineReducers({
+	user: UserReducer,
 });
 
-export type RootState = ReturnType<typeof store.getState>;
+const persistConfig = {
+	key: "root",
+	storage: storageSession,
+	whitelist: ["user"],
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = configureStore({
+	reducer: persistedReducer,
+	middleware: [thunk],
+});
+
+export type IRootState = ReturnType<typeof store.getState>;
+
+export const persistor = persistStore(store);
 
 export default store;

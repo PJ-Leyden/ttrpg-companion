@@ -1,52 +1,56 @@
 .CoreContainer {
-    margin-top: 100px;
-    margin-left: 0px !important;
-    margin-right: 0px !important;
-    flex-grow: 1;
+	margin-top: 100px;
+	margin-left: 0px !important;
+	margin-right: 0px !important;
+	flex-grow: 1;
 }
 
 .LeftNav {
-    background-color: blueviolet;
-    width: 80px;
-    height: 100%;
-    margin-top: 64px;
+	background-color: blueviolet;
+	width: 80px;
+	height: 100%;
+	margin-top: 64px;
 }
 
 .GridClass {
-    height: 100%;
+	height: 100%;
 }
 
 .top {
-    display: block;
+	display: block;
 }
 
 .appBar {
-    width: 100%;
-    height: 64px;
-    background-color: black;
+	width: 100%;
+	height: 64px;
+	background-color: lightgrey;
+	box-shadow: 5px 5px 5px black;
+	z-index: 10;
 }
 
 .test {
-    width: 250px;
-    height: Calc(100vh - 64px);
-    background-color: lightgray;
-    transition: width 0.8s ease-out;
-    display: flex;
+	width: 250px;
+	height: Calc(100vh - 64px);
+	background-color: lightgray;
+	transition: width 0.8s ease-out;
+	display: flex;
+	box-shadow: 5px 5px 5px black;
+	z-index: 1;
 }
 
 .testStart {
-    width: 64px;
+	width: 64px;
 }
 
 .testEnd {
-    width: 250px;
+	width: 250px;
 }
 
 .flexBoi {
-    display: flex;
+	display: flex;
 }
 
 .pageContainer {
-    display: flex;
-    flex-grow: 1;
+	display: flex;
+	flex-grow: 1;
 }

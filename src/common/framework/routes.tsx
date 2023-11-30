@@ -1,10 +1,15 @@
-import { RouteObject, redirect } from "react-router-dom";
+import {
+	RouteObject,
+	RouterProvider,
+	createBrowserRouter,
+	redirect,
+} from "react-router-dom";
 import WarhammerCharacterSheet from "../../warhammer/WarhammerCharacterSheet";
 import { IWarhammerCharacteristics } from "../../warhammer/models";
 import MainLayout from "./MainLayout";
 import Signup from "./Login/Signup";
 import Login from "./Login/Login";
-import { getTokenCookie } from "./Login/getTokenCookie";
+import Cookies from "js-cookie";
 
 const initSheet: IWarhammerCharacteristics = {
 	weaponSkill: 80,
@@ -20,31 +25,38 @@ const initSheet: IWarhammerCharacteristics = {
 	test: "",
 };
 
-export const routes: RouteObject[] = [
-	{
-		path: "/login",
-		element: <Login />,
-	},
-	{
-		path: "/signup",
-		element: <Signup />,
-	},
-	{
-		path: "/",
-		element: <MainLayout />,
-		loader: async () => {
-			const tokenCookie = getTokenCookie();
-			if (tokenCookie === "") {
-				return redirect("/login");
-			}
-
-			return null;
+const Router: React.FC<{}> = (props) => {
+	const routes: RouteObject[] = [
+		{
+			path: "/login",
+			element: <Login />,
 		},
-		children: [
-			{
-				path: "warhammer",
-				element: <WarhammerCharacterSheet sheet={initSheet} />,
+		{
+			path: "/signup",
+			element: <Signup />,
+		},
+		{
+			path: "/",
+			element: <MainLayout />,
+			loader: () => {
+				const jwt = Cookies.get("jwt");
+				if (!jwt || jwt === "") {
+					return redirect("/login");
+				}
+				return null;
 			},
-		],
-	},
-];
+			children: [
+				{
+					path: "warhammer",
+					element: <WarhammerCharacterSheet sheet={initSheet} />,
+				},
+			],
+		},
+	];
+
+	const router = createBrowserRouter(routes);
+
+	return <RouterProvider router={router} />;
+};
+
+export default Router;
