@@ -3,26 +3,31 @@ import { Formik, FormikProps } from "formik";
 import axios from "axios";
 import TextInputField from "../../TextInputField";
 import { IUserSignupForm, initialUserSignupForm } from "./models";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export interface ISignupProps {}
 
 const Signup: React.FC<ISignupProps> = (props) => {
 	const navigate = useNavigate();
 
+	const serverUrl = process.env.SERVER_URL;
+	console.log(serverUrl);
+
+	const createUser = async (values: IUserSignupForm) => {
+		await axios.post<string>(serverUrl + "/api/CreateUser", {
+			firstName: values.firstName,
+			lastName: values.lastName,
+			username: values.username,
+			email: values.email,
+			password: values.password,
+		});
+		navigate("/login");
+	};
+
 	return (
 		<Formik
 			initialValues={initialUserSignupForm}
-			onSubmit={async (values) => {
-				await axios.post<string>("/api/CreateUser", {
-					firstName: values.firstName,
-					lastName: values.lastName,
-					username: values.username,
-					email: values.email,
-					password: values.password,
-				});
-				navigate("/login");
-			}}
+			onSubmit={createUser}
 			validate={(values) => {
 				if (values.password !== values.reTypePassword) {
 					return {
@@ -99,6 +104,13 @@ const Signup: React.FC<ISignupProps> = (props) => {
 						>
 							Signup
 						</Button>
+					</Grid>
+					<Grid item>
+						<Link to="/login">
+							<Button type="button" variant="contained">
+								Back to Login
+							</Button>
+						</Link>
 					</Grid>
 				</Grid>
 			)}

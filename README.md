@@ -6,9 +6,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Need to decide on what component library to use
 
-- [Material UI](https://mui.com/material-ui/getting-started/overview/)
-- [Chakra UI](https://chakra-ui.com/)
-- [Semantic UI](https://semantic-ui.com/)
+-   [Material UI](https://mui.com/material-ui/getting-started/overview/)
+-   [Chakra UI](https://chakra-ui.com/)
+-   [Semantic UI](https://semantic-ui.com/)
 
 ## Available Scripts
 
@@ -52,3 +52,5 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+https://www.robinwieruch.de/vite-create-react-app/
